@@ -21,9 +21,9 @@ The system consists of several key components:
 
 ## Repository Structure
 
-- `/sensor_gui`: Contains the code for the Raspberry Pi GUI and data processing.
+- `/GUI.py`: Contains the code for the Raspberry Pi GUI and data processing.
 - `/ml_model`: Includes the machine learning model and related scripts.
-- `/arduino`: Arduino code for sensor data acquisition.
+- `/GSR_test.ino`: Arduino code for sensor data acquisition.
 
 ## Features
 
