@@ -1,23 +1,31 @@
 # Neuromuscular Disorder Detection System
 
-This project implements a real-time neuromuscular disorder detection system using EMG (Electromyography) and GSR (Galvanic Skin Response) sensors. The system runs on a Raspberry Pi, with data acquisition from an Arduino Uno.
+## Technical Details
+- **Model Architecture**: KNN Classifier with 75% accuracy, compared against Random Forest (92%), Logistic Regression (42%), and SVM (62%)
+- **Signal Processing**: 
+  - Digital bandpass filter (75-145 Hz)
+  - Power Spectral Density (PSD) analysis
+  - Continuous Wavelet Transform (CWT)
+- **Data Streaming**: Lab Streaming Layer (LSL) at 500 Hz sampling rate
+- **Real-time Processing**: Continuous prediction every second using 500 EMG data points
 
-## Project Overview
+## System Architecture
+1. **Data Acquisition Layer**:
+   - Arduino Uno with EMG and GSR sensors
+   - Analog to Digital Conversion
+   - Real-time data streaming at 500 Hz
 
-The system consists of several key components:
-
-1. **Sensor Data Acquisition**: EMG and GSR data are collected using sensors connected to an Arduino Uno.
-
-2. **Data Processing**: The sensor data is fed into a Raspberry Pi for processing and analysis.
-
-3. **Machine Learning Model**: An ML model, trained on a dataset from a medical institution, processes the EMG data to detect potential neuromuscular disorders. The model is trained specifically for right hand muscle data.
-
-4. **Graphical User Interface (GUI)**: A real-time GUI on the Raspberry Pi displays:
-   - EMG signal plot
-   - GSR signal plot
-   - Prediction results from the ML model
-
-5. **Remote Access**: The GUI can be accessed remotely from any device on the same network as the Raspberry Pi.
+2. **Processing Layer** (Raspberry Pi 4B):
+   - Flask server for web interface
+   - SocketIO for real-time data broadcasting
+   - Pre-trained ML model for classification
+   - Digital bandpass filtering
+   
+3. **Interface Layer**:
+   - Local GUI (Tkinter + Matplotlib)
+   - Web interface (Flask + SocketIO)
+   - Real-time visualization
+   - Status indication system
 
 ## Repository Structure
 
